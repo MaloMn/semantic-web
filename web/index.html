@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<html>
+
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="mvp.css">
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="d3sparql.js"></script>
+  <script src="index.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>An analysis of <u>film shootings</u> in Paris</u></h1>
+    <p>Data issued from <a href="https://opendata.paris.fr/explore/dataset/lieux-de-tournage-a-paris/">https://opendata.paris.fr/explore/dataset/lieux-de-tournage-a-paris/</a></p>
+  </header>
+  <main>
+    <hr>
+    <section>
+      <header>
+        <h2>Number of film shootings in terms of Paris districts</h2>
+        <p>This query does not involve any external ontology.</p>
+        <div id="result"></div>
+        <p>We can see that the most filmed location is the 18th district. One its most famous places in Montmartre.</p>
+      </header>
+    </section>
+    <section>
+      <header>
+        <h2>Paris famous places and shootings that took place less than 1km from them</h2>
+      </header>
+      <div class="horizontal">
+      <form>
+        <input type="text" id="paris-place" name="map" size="28" placeholder="Location in Paris">
+        <button>Add this place to the graph</button>
+      </form>
+      <div id="forcefield">Blablabla</div>
+      </div>
+        
+      
+    </section>
+      
+      <!--<aside>
+        <h3>Card heading</h3>
+        <p>Card content*</p>
+        <p><small>*with small content</small></p>
+      </aside>
+      <aside>
+        <h3>Card heading</h3>
+        <p>Card content <sup>with notification</sup></p>
+      </aside>
+      <aside>
+        <h3>Card heading</h3>
+        <p>Card content</p>
+      </aside>
+    </section>
+    <hr>
+    <section>-->
+      <blockquote>
+        "Le cinéma est la plus belle escroquerie du monde."
+        <footer><i>- Jean-Luc Godard </i></footer>
+      </blockquote>
+    </section>
+    <hr>
+  </main>
+</body>
+
+</html>

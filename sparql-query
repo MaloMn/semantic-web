@@ -1,0 +1,74 @@
+SELECT ?point WHERE {
+  ?x :hasGeo ?geo .
+  ?geo :hasPoint ?point .
+} LIMIT 10
+
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX : <http://127.0.0.1:3333/>
+PREFIX osmm: <https://www.openstreetmap.org/meta/> 
+PREFIX osmt: <https://wiki.openstreetmap.org/wiki/Key:> 
+PREFIX bd: <http://www.bigdata.com/rdf#> 
+PREFIX wikibase: <http://wikiba.se/ontology#> 
+
+SELECT * WHERE {
+  ?x :hasGeo ?geo .
+  ?geo :hasPoint ?point .
+  SERVICE <https://sophox.org/sparql> {
+  	
+  }
+}
+
+
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX : <http://127.0.0.1:3333/>
+PREFIX osmm: <https://www.openstreetmap.org/meta/> 
+PREFIX osmt: <https://wiki.openstreetmap.org/wiki/Key:> 
+PREFIX bd: <http://www.bigdata.com/rdf#> 
+PREFIX wikibase: <http://wikiba.se/ontology#> 
+PREFIX geof: <http://www.opengis.net/def/function/geosparql/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+
+SELECT ?x ?dist $attr $coord WHERE {
+  ?x :hasGeo ?geo .
+  ?geo :hasPoint ?point .
+  BIND(CONCAT("Point(", REPLACE(?point, ",", ""), ")") AS ?coordinates)
+  BIND(STRDT(STR(?coordinates), geo:wktLiteral) AS $coord)
+  
+  SERVICE <https://sophox.org/sparql> {
+      SELECT ?attr WHERE {
+      ?attraction osmt:tourism "attraction";
+                  osmt:name ?name.
+      ?attraction osmm:loc ?attr .
+      FILTER CONTAINS(?name, "Tour Eiffel")
+    } LIMIT 1 
+  }
+  
+  SERVICE <https://query.wikidata.org/sparql> {
+    SELECT $dist WHERE {
+      BIND(geof:distance("Point(0 0)"^^geo:wktLiteral, "Point(10 10)"^^geo:wktLiteral) as $dist)
+		#BIND(geof:distance($attr, $coord) as ?dist) 
+    }
+}
+  
+  
+}
+
+
+
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+
+select * where {
+  ?movie wdt:P31 wd:Q11424 .
+  ?movie wdt:P1476 ?title .
+  
+  filter contains(lcase(?title),"la la land") 
+  
+  
+  } LIMIT 10

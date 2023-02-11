@@ -1,0 +1,438 @@
+@prefix :      <http://127.0.0.1:3333/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+:Shooting a rdf:Class .
+:Geo a rdf:Class .
+:Location a rdf:Class .
+:Movie a rdf:Class .
+
+:hasEndDate a rdf:Property .
+:hasEndDate :hasRange xsd:date .
+:hasEndDate :hasDomain :Shooting .
+:hasGeo a rdf:Property .
+:hasGeo :hasRange xsd:string .
+:hasGeo :hasDomain :Geo .
+:hasPoint a rdf:Property .
+:hasPoint :hasRange xsd:string .
+:hasPoint :hasDomain :Geo .
+:hasShape a rdf:Property .
+:hasShape :hasRange xsd:string .
+:hasShape :hasDomain :Geo .
+:hasLocation a rdf:Property .
+:hasLocation :hasRange xsd:string .
+:hasLocation :hasDomain :Location .
+:hasAddress a rdf:Property .
+:hasAddress :hasRange xsd:string .
+:hasAddress :hasDomain :Location .
+:hasCustomType a rdf:Property .
+:hasCustomType :hasRange xsd:string .
+:hasCustomType :hasDomain :Location .
+:hasPostalCode a rdf:Property .
+:hasPostalCode :hasRange xsd:int .
+:hasPostalCode :hasDomain :Location .
+:hasMovie a rdf:Property .
+:hasMovie :hasRange xsd:string .
+:hasMovie :hasDomain :Movie .
+:hasDirector a rdf:Property .
+:hasDirector :hasRange xsd:string .
+:hasDirector :hasDomain :Movie .
+:hasProducer a rdf:Property .
+:hasProducer :hasRange xsd:string .
+:hasProducer :hasDomain :Movie .
+:hasTitle a rdf:Property .
+:hasTitle :hasRange xsd:string .
+:hasTitle :hasDomain :Movie .
+:hasShootingType a rdf:Property .
+:hasShootingType :hasRange xsd:string .
+:hasShootingType :hasDomain :Movie .
+:hasStartDate a rdf:Property .
+:hasStartDate :hasRange xsd:date .
+:hasStartDate :hasDomain :Movie .
+:hasXCoordinate a rdf:Property .
+:hasXCoordinate :hasRange xsd:double .
+:hasXCoordinate :hasDomain :Movie .
+:hasYCoordinate a rdf:Property .
+:hasYCoordinate :hasRange xsd:double .
+:hasYCoordinate :hasDomain :Movie .
+:hasYear a rdf:Property .
+:hasYear :hasRange xsd:int .
+:hasYear :hasDomain :Movie .
+
+
+:2577   rdf:type          :Shooting ;
+        :hasEndDate       "2020-12-22"^^xsd:date ;
+        :hasGeo           [ rdf:type   :Geo ;
+                            :hasPoint  "48.828805798906224, 2.350837433819488" ;
+                            :hasShape  "{\"coordinates\": [2.350837433819488, 48.828805798906224], \"type\": \"Point\"}"
+                          ] ;
+        :hasLocation      [ rdf:type        :Location ;
+                            :hasAddress     "rue jonas, 75013 paris" ;
+                            :hasCustomType  "2020-1109" ;
+                            :hasPostalCode  "75013"^^xsd:int
+                          ] ;
+        :hasMovie         [ rdf:type      :Movie ;
+                            :hasDirector  "Sylvie Verheyde" ;
+                            :hasProducer  "ATELIER DE PRODUCTION" ;
+                            :hasTitle     "STELLA EST AMOUREUSE"
+                          ] ;
+        :hasShootingType  "Long métrage" ;
+        :hasStartDate     "2020-12-22"^^xsd:date ;
+        :hasXCoordinate   "2.35083743"^^xsd:double ;
+        :hasYCoordinate   "48.8288058"^^xsd:double ;
+        :hasYear          "2020"^^xsd:int .
+
+:2665   rdf:type          :Shooting ;
+        :hasEndDate       "2017-06-12"^^xsd:date ;
+        :hasGeo           [ rdf:type   :Geo ;
+                            :hasPoint  "48.87224361670935, 2.377908461710746" ;
+                            :hasShape  "{\"coordinates\": [2.377908461710746, 48.87224361670935], \"type\": \"Point\"}"
+                          ] ;
+        :hasLocation      [ rdf:type        :Location ;
+                            :hasAddress     "8 rue de belleville, 75020 paris" ;
+                            :hasCustomType  "2017-1286" ;
+                            :hasPostalCode  "75020"^^xsd:int
+                          ] ;
+        :hasMovie         [ rdf:type      :Movie ;
+                            :hasDirector  "PIERRE ANDRE LHOMME" ;
+                            :hasProducer  "WONDERCORP" ;
+                            :hasTitle     "BARBER TRUCK"
+                          ] ;
+        :hasShootingType  "Série Web" ;
+        :hasStartDate     "2017-06-12"^^xsd:date ;
+        :hasXCoordinate   "2.37790846"^^xsd:double ;
+        :hasYCoordinate   "48.87224362"^^xsd:double ;
+        :hasYear          "2017"^^xsd:int .
+
+:9044   rdf:type          :Shooting ;
+        :hasEndDate       "2017-12-24"^^xsd:date ;
+        :hasGeo           [ rdf:type   :Geo ;
+                            :hasPoint  "48.85009239138361, 2.329753018911203" ;
+                            :hasShape  "{\"coordinates\": [2.329753018911203, 48.85009239138361], \"type\": \"Point\"}"
+                          ] ;
+        :hasLocation      [ rdf:type        :Location ;
+                            :hasAddress     "rue de rennes, 75006 paris" ;
+                            :hasCustomType  "2017-789" ;
+                            :hasPostalCode  "75006"^^xsd:int
+                          ] ;
+        :hasMovie         [ rdf:type      :Movie ;
+                            :hasDirector  "Pierre-André Lhomme" ;
+                            :hasProducer  "WONDERCORP" ;
+                            :hasTitle     "Arthur dans la foret"
+                          ] ;
+        :hasShootingType  "Série Web" ;
+        :hasStartDate     "2017-12-24"^^xsd:date ;
+        :hasXCoordinate   "2.32975302"^^xsd:double ;
+        :hasYCoordinate   "48.85009239"^^xsd:double ;
+        :hasYear          "2017"^^xsd:int .
+
+:2753   rdf:type          :Shooting ;
+        :hasEndDate       "2018-01-18"^^xsd:date ;
+        :hasGeo           [ rdf:type   :Geo ;
+                            :hasPoint  "48.88440437848449, 2.333836572127334" ;
+                            :hasShape  "{\"coordinates\": [2.333836572127334, 48.88440437848449], \"type\": \"Point\"}"
+                          ] ;
+        :hasLocation      [ rdf:type        :Location ;
+                            :hasAddress     "8 rue coustou, 75018 paris" ;
+                            :hasCustomType  "2018-41" ;
+                            :hasPostalCode  "75018"^^xsd:int
+                          ] ;
+        :hasMovie         [ rdf:type      :Movie ;
+                            :hasDirector  "Sarah Marx" ;
+                            :hasProducer  "La rumeur filme" ;
+                            :hasTitle     "L'Enkas"
+                          ] ;
+        :hasShootingType  "Long métrage" ;
+        :hasStartDate     "2018-01-17"^^xsd:date ;
+        :hasXCoordinate   "2.33383657"^^xsd:double ;
+        :hasYCoordinate   "48.88440438"^^xsd:double ;
+        :hasYear          "2018"^^xsd:int .
+
+:9132   rdf:type          :Shooting ;
+        :hasEndDate       "2021-08-07"^^xsd:date ;
+        :hasGeo           [ rdf:type   :Geo ;
+                            :hasPoint  "48.853565364492596, 2.347423428584992" ;
+                            :hasShape  "{\"coordinates\": [2.347423428584992, 48.853565364492596], \"type\": \"Point\"}"
+                          ] ;
+        :hasLocation      [ rdf:type        :Location ;
+                            :hasAddress     "parvis notre-dame place jean-paul ii, 75004 paris" ;
+                            :hasCustomType  "2021-908" ;
+                            :hasPostalCode  "75004"^^xsd:int
+                          ] ;
+        :hasMovie         [ rdf:type      :Movie ;
+                            :hasDirector  "HERVÉ HADMAR" ;
+                            :hasProducer  "CHEYENNE FEDERATION" ;
+                            :hasTitle     "NOTRE-DAME, LA PART DU FEU"
+                          ] ;
+        :hasShootingType  "Série TV" ;
+        :hasStartDate     "2021-08-06"^^xsd:date ;
+        :hasXCoordinate   "2.34742343"^^xsd:double ;
+        :hasYCoordinate   "48.85356537"^^xsd:double ;
+        :hasYear          "2021"^^xsd:int .
+
+:2841   rdf:type          :Shooting ;
+        :hasEndDate       "2021-06-28"^^xsd:date ;
+        :hasGeo           [ rdf:type   :Geo ;
+                            :hasPoint  "48.85680770920357, 2.314786562306807" ;
+                            :hasShape  "{\"coordinates\": [2.314786562306807, 48.85680770920357], \"type\": \"Point\"}"
+                          ] ;
+        :hasLocation      [ rdf:type        :Location ;
+                            :hasAddress     "2 boulevard des invalides, 75007 paris" ;
+                            :hasCustomType  "2021-868" ;
+                            :hasPostalCode  "75007"^^xsd:int
+                          ] ;
+        :hasMovie         [ rdf:type      :Movie ;
+                            :hasDirector  "Léa Fazer" ;
+                            :hasProducer  "GAUMONT TELEVISION c/o GAUMONT PRODUCTION TELEVISION" ;
+                            :hasTitle     "L'art du crime saison 5  PP"
+                          ] ;
+        :hasShootingType  "Série TV" ;
+        :hasStartDate     "2021-06-28"^^xsd:date ;
+        :hasXCoordinate   "2.31478656"^^xsd:double ;
+        :hasYCoordinate   "48.85680771"^^xsd:double ;
+        :hasYear          "2021"^^xsd:int .
+
+:9220   rdf:type          :Shooting ;
+        :hasEndDate       "2020-12-03"^^xsd:date ;
+        :hasGeo           [ rdf:type   :Geo ;
+                            :hasPoint  "48.86359835817283, 2.286625031346032" ;
+                            :hasShape  "{\"coordinates\": [2.286625031346032, 48.86359835817283], \"type\": \"Point\"}"
+                          ] ;
+        :hasLocation      [ rdf:type        :Location ;
+                            :hasAddress     "8 place du trocadéro et du onze novembre, 75116 paris" ;
+                            :hasCustomType  "2020-1001" ;
+                            :hasPostalCode  "75116"^^xsd:int
+                          ] ;
+        :hasMovie         [ rdf:type      :Movie ;
+                            :hasDirector  "Christophe CAMPOS" ;
+                            :hasProducer  "Gaumont Production Télévision" ;
+                            :hasTitle     "PLAN B"
+                          ] ;
+        :hasShootingType  "Série TV" ;
+        :hasStartDate     "2020-12-03"^^xsd:date ;
+        :hasXCoordinate   "2.28662503"^^xsd:double ;
+        :hasYCoordinate   "48.86359836"^^xsd:double ;
+        :hasYear          "2020"^^xsd:int .
+
+:688    rdf:type          :Shooting ;
+        :hasEndDate       "2021-03-26"^^xsd:date ;
+        :hasGeo           [ rdf:type   :Geo ;
+                            :hasPoint  "48.88736137740759, 2.388299135371663" ;
+                            :hasShape  "{\"coordinates\": [2.388299135371663, 48.88736137740759], \"type\": \"Point\"}"
+                          ] ;
+        :hasLocation      [ rdf:type        :Location ;
+                            :hasAddress     "164 avenue jean jaurès, 75019 paris" ;
+                            :hasCustomType  "2021-365" ;
+                            :hasPostalCode  "75019"^^xsd:int
+                          ] ;
+        :hasMovie         [ rdf:type      :Movie ;
+                            :hasDirector  "IGOR GOTESMAN" ;
+                            :hasProducer  "LES FILMS DU KIOSQUE" ;
+                            :hasTitle     "FAMILY BUSINESS SAISON 3"
+                          ] ;
+        :hasShootingType  "Série TV" ;
+        :hasStartDate     "2021-03-26"^^xsd:date ;
+        :hasXCoordinate   "2.38829914"^^xsd:double ;
+        :hasYCoordinate   "48.88736138"^^xsd:double ;
+        :hasYear          "2021"^^xsd:int .
+
+:776    rdf:type          :Shooting ;
+        :hasEndDate       "2019-01-14"^^xsd:date ;
+        :hasGeo           [ rdf:type   :Geo ;
+                            :hasPoint  "48.88739523873366, 2.367206100250927" ;
+                            :hasShape  "{\"coordinates\": [2.367206100250927, 48.88739523873366], \"type\": \"Point\"}"
+                          ] ;
+        :hasLocation      [ rdf:type        :Location ;
+                            :hasAddress     "56 rue d'aubervilliers, 75019 paris" ;
+                            :hasCustomType  "2019-71" ;
+                            :hasPostalCode  "75019"^^xsd:int
+                          ] ;
+        :hasMovie         [ rdf:type      :Movie ;
+                            :hasDirector  "Arnaud Sélignac" ;
+                            :hasProducer  "SON ET LUMIERE" ;
+                            :hasTitle     "Des rêves au-dessus de leur tête"
+                          ] ;
+        :hasShootingType  "Téléfilm" ;
+        :hasStartDate     "2019-01-14"^^xsd:date ;
+        :hasXCoordinate   "2.3672060999999998"^^xsd:double ;
+        :hasYCoordinate   "48.887395240000004"^^xsd:double ;
+        :hasYear          "2019"^^xsd:int .
+
+:864    rdf:type          :Shooting ;
+        :hasEndDate       "2019-05-24"^^xsd:date ;
+        :hasGeo           [ rdf:type   :Geo ;
+                            :hasPoint  "48.88436692482426, 2.378313665079505" ;
+                            :hasShape  "{\"coordinates\": [2.378313665079505, 48.88436692482426], \"type\": \"Point\"}"
+                          ] ;
+        :hasLocation      [ rdf:type        :Location ;
+                            :hasAddress     "113 rue de meaux, 75019 paris" ;
+                            :hasCustomType  "2019-466" ;
+                            :hasPostalCode  "75019"^^xsd:int
+                          ] ;
+        :hasMovie         [ rdf:type      :Movie ;
+                            :hasDirector  "Jean-Philippe Amar" ;
+                            :hasProducer  "SON ET LUMIERE" ;
+                            :hasTitle     "ENGRENAGES SAISON 8"
+                          ] ;
+        :hasShootingType  "Série TV" ;
+        :hasStartDate     "2019-05-22"^^xsd:date ;
+        :hasXCoordinate   "2.37831367"^^xsd:double ;
+        :hasYCoordinate   "48.88436693"^^xsd:double ;
+        :hasYear          "2019"^^xsd:int .
+
+:3494   rdf:type          :Shooting ;
+        :hasEndDate       "2017-07-31"^^xsd:date ;
+        :hasGeo           [ rdf:type   :Geo ;
+                            :hasPoint  "48.86525413668828, 2.300364107506439" ;
+                            :hasShape  "{\"coordinates\": [2.300364107506439, 48.86525413668828], \"type\": \"Point\"}"
+                          ] ;
+        :hasLocation      [ rdf:type        :Location ;
+                            :hasAddress     "2 avenue marceau, 75008 paris" ;
+                            :hasCustomType  "2017-1577" ;
+                            :hasPostalCode  "75008"^^xsd:int
+                          ] ;
+        :hasMovie         [ rdf:type      :Movie ;
+                            :hasDirector  "CATHERINE CORSINI" ;
+                            :hasProducer  "CHAZ PRODUCTIONS" ;
+                            :hasTitle     "UN AMOUR IMPOSSIBLE"
+                          ] ;
+        :hasShootingType  "Long métrage" ;
+        :hasStartDate     "2017-07-31"^^xsd:date ;
+        :hasXCoordinate   "2.30036411"^^xsd:double ;
+        :hasYCoordinate   "48.86525414"^^xsd:double ;
+        :hasYear          "2017"^^xsd:int .
+
+:952    rdf:type          :Shooting ;
+        :hasEndDate       "2017-10-09"^^xsd:date ;
+        :hasGeo           [ rdf:type   :Geo ;
+                            :hasPoint  "48.86362687990131, 2.310386300802888" ;
+                            :hasShape  "{\"coordinates\": [2.310386300802888, 48.86362687990131], \"type\": \"Point\"}"
+                          ] ;
+        :hasLocation      [ rdf:type        :Location ;
+                            :hasAddress     "pont des invalides, 75007 paris" ;
+                            :hasCustomType  "2017-677" ;
+                            :hasPostalCode  "75007"^^xsd:int
+                          ] ;
+        :hasMovie         [ rdf:type      :Movie ;
+                            :hasDirector  "Valéria Bruni-Tedeschi" ;
+                            :hasProducer  "AD VITAM" ;
+                            :hasTitle     "Les Estivants"
+                          ] ;
+        :hasShootingType  "Long métrage" ;
+        :hasStartDate     "2017-10-09"^^xsd:date ;
+        :hasXCoordinate   "2.3103863000000002"^^xsd:double ;
+        :hasYCoordinate   "48.86362688"^^xsd:double ;
+        :hasYear          "2017"^^xsd:int .
+
+:3582   rdf:type          :Shooting ;
+        :hasEndDate       "2016-03-31"^^xsd:date ;
+        :hasGeo           [ rdf:type   :Geo ;
+                            :hasPoint  "48.857724000414876, 2.35385300057458" ;
+                            :hasShape  "{\"coordinates\": [2.35385300057458, 48.857724000414876], \"type\": \"Point\"}"
+                          ] ;
+        :hasLocation      [ rdf:type        :Location ;
+                            :hasAddress     "34  RUE  DE LA VERRERIE" ;
+                            :hasCustomType  "2016-1557" ;
+                            :hasPostalCode  "75004"^^xsd:int
+                          ] ;
+        :hasMovie         [ rdf:type      :Movie ;
+                            :hasDirector  "FREDERIC FORESTIER" ;
+                            :hasProducer  "LES FILMS DU 24" ;
+                            :hasTitle     "MON POUSSIN"
+                          ] ;
+        :hasShootingType  "Long métrage" ;
+        :hasStartDate     "2016-03-29"^^xsd:date ;
+        :hasXCoordinate   "2.353853"^^xsd:double ;
+        :hasYCoordinate   "48.857724"^^xsd:double ;
+        :hasYear          "2016"^^xsd:int .
+
+:3670   rdf:type          :Shooting ;
+        :hasEndDate       "2020-11-11"^^xsd:date ;
+        :hasGeo           [ rdf:type   :Geo ;
+                            :hasPoint  "48.865386636641354, 2.274909995082511" ;
+                            :hasShape  "{\"coordinates\": [2.274909995082511, 48.865386636641354], \"type\": \"Point\"}"
+                          ] ;
+        :hasLocation      [ rdf:type        :Location ;
+                            :hasAddress     "186 avenue victor hugo, 75116 paris" ;
+                            :hasCustomType  "2020-796" ;
+                            :hasPostalCode  "75116"^^xsd:int
+                          ] ;
+        :hasMovie         [ rdf:type      :Movie ;
+                            :hasDirector  "David Morley" ;
+                            :hasProducer  "STORIA TELEVISION Luther" ;
+                            :hasTitle     "Luther"
+                          ] ;
+        :hasShootingType  "Série TV" ;
+        :hasStartDate     "2020-11-11"^^xsd:date ;
+        :hasXCoordinate   "2.27491"^^xsd:double ;
+        :hasYCoordinate   "48.86538664"^^xsd:double ;
+        :hasYear          "2020"^^xsd:int .
+
+:2628   rdf:type          :Shooting ;
+        :hasEndDate       "2018-03-26"^^xsd:date ;
+        :hasGeo           [ rdf:type   :Geo ;
+                            :hasPoint  "48.84571407141576, 2.358875161983074" ;
+                            :hasShape  "{\"coordinates\": [2.358875161983074, 48.84571407141576], \"type\": \"Point\"}"
+                          ] ;
+        :hasLocation      [ rdf:type        :Location ;
+                            :hasAddress     "25 rue cuvier, 75005 paris" ;
+                            :hasCustomType  "2018-318" ;
+                            :hasPostalCode  "75005"^^xsd:int
+                          ] ;
+        :hasMovie         [ rdf:type      :Movie ;
+                            :hasProducer  "MON VOISIN PRODUCTION" ;
+                            :hasTitle     "DIX POUR CENT  SAISON 3"
+                          ] ;
+        :hasShootingType  "Série TV" ;
+        :hasStartDate     "2018-03-26"^^xsd:date ;
+        :hasXCoordinate   "2.35887516"^^xsd:double ;
+        :hasYCoordinate   "48.84571407"^^xsd:double ;
+        :hasYear          "2018"^^xsd:int .
+
+:9007   rdf:type          :Shooting ;
+        :hasEndDate       "2017-02-22"^^xsd:date ;
+        :hasGeo           [ rdf:type   :Geo ;
+                            :hasPoint  "48.86593097865012, 2.326273518971319" ;
+                            :hasShape  "{\"coordinates\": [2.326273518971319, 48.86593097865012], \"type\": \"Point\"}"
+                          ] ;
+        :hasLocation      [ rdf:type        :Location ;
+                            :hasAddress     "2 rue rouget de l'isle, 75001 paris" ;
+                            :hasCustomType  "2017-32" ;
+                            :hasPostalCode  "75001"^^xsd:int
+                          ] ;
+        :hasMovie         [ rdf:type      :Movie ;
+                            :hasDirector  "ZABOU BREITMAN" ;
+                            :hasProducer  "LES FILMS DU KIOSQUE" ;
+                            :hasTitle     "CHRONIQUES PARISIENNES"
+                          ] ;
+        :hasShootingType  "Série TV" ;
+        :hasStartDate     "2017-02-22"^^xsd:date ;
+        :hasXCoordinate   "2.32627352"^^xsd:double ;
+        :hasYCoordinate   "48.86593098"^^xsd:double ;
+        :hasYear          "2017"^^xsd:int .
+
+:2716   rdf:type          :Shooting ;
+        :hasEndDate       "2016-02-08"^^xsd:date ;
+        :hasGeo           [ rdf:type   :Geo ;
+                            :hasPoint  "48.85930100007823, 2.267740999404782" ;
+                            :hasShape  "{\"coordinates\": [2.267740999404782, 48.85930100007823], \"type\": \"Point\"}"
+                          ] ;
+        :hasLocation      [ rdf:type        :Location ;
+                            :hasAddress     "AVENUE  RAPHAEL" ;
+                            :hasCustomType  "2016-1469" ;
+                            :hasPostalCode  "75016"^^xsd:int
+                          ] ;
+        :hasMovie         [ rdf:type      :Movie ;
+                            :hasDirector  "LUCIEN JEAN BAPTISTE" ;
+                            :hasProducer  "NOLITA CINEMA" ;
+                            :hasTitle     "IL A DEJA TES YEUX"
+                          ] ;
+        :hasShootingType  "Long métrage" ;
+        :hasStartDate     "2016-02-08"^^xsd:date ;
+        :hasXCoordinate   "2.267741"^^xsd:double ;
+        :hasYCoordinate   "48.859301"^^xsd:double ;
+        :hasYear          "2016"^^xsd:int .
+
