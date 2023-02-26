@@ -3,11 +3,9 @@
 <html>
 
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" />
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="mvp.css">
-  <script src="http://d3js.org/d3.v3.min.js"></script>
-  <script src="d3sparql.js"></script>
-  <script src="index.js"></script>
 </head>
 
 <body>
@@ -35,9 +33,15 @@
         <button>Add this place to the graph</button>
       </form>
       <div id="forcefield">Blablabla</div>
-      </div>
-        
-      
+      </div>      
+    </section>
+    <section>
+      <header>
+        <h2>Location of shootings in Paris</h2>
+        <p>The map below is from OpenStreetMap and is displayed using Leaflet.</p>
+        <div id="map" style="height: 500px;"></div>
+        <p>We can see that the most filmed location is the 18th district. One its most famous places in Montmartre.</p>
+      </header>
     </section>
       
       <!--<aside>
@@ -63,6 +67,13 @@
     </section>
     <hr>
   </main>
+
+
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
+  <script src="d3sparql.js"></script>
+  <script src="index.js"></script>
+
 </body>
 
 </html>

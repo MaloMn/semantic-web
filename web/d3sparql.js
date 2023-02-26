@@ -111,6 +111,9 @@ d3sparql.graph = function(json, config) {
     "value1": config.value1 || head[4] || false,
     "value2": config.value2 || head[5] || false,
   }
+
+  console.log(opts);
+
   var graph = {
     "nodes": [],
     "links": []
@@ -123,34 +126,42 @@ d3sparql.graph = function(json, config) {
     var key1 = data[i][opts.key1].value
     var key2 = data[i][opts.key2].value
 
-    var label1 = opts.label1 ? data[i][opts.label1].value : key1
-    var label2 = opts.label2 ? data[i][opts.label2].value : key2
+    let label1 = opts.label1 ? data[i][opts.label1].value : key1
+    let label2 = opts.label2 ? data[i][opts.label2].value : key2
 
-    console.log(label1, label2);
+    let value1 = data[i][opts.value1].value
+    let value2 = data[i][opts.value2].value
 
-    var value1 = 100
-    var value2 = 30
+    // Getting the coordinates
+    const regexp = /\d+\.\d+/g
+    const array = [...(value1 + value2).matchAll(regexp)];
 
-    if (!check.has(key1)) {
-      graph.nodes.push({"key": key1, "label": label1, "value": value1})
-      check.set(key1, index)
-      index++
+    // Computing haversine distance between both points
+    let points = array.map(( point ) => parseFloat(point));
+    let distance = haversineDistance(points[1], points[0], points[2], points[3])
+
+    if (distance < config.maxDistance) {
+
+      if (!check.has(label1)) {
+        graph.nodes.push({"key": label1, "label": label1, "value": value1})
+        check.set(label1, index)
+        index++
+      }
+
+      if (!check.has(label2)) {
+        graph.nodes.push({"key": label2, "label": label2, "value": value2})
+        check.set(label2, index)
+        index++
+      }
+
+      graph.links.push({"source": check.get(label1), "target": check.get(label2)})
     }
-
-    if (!check.has(key2)) {
-      graph.nodes.push({"key": key2, "label": label2, "value": value2})
-      check.set(key2, index)
-      index++
-    }
-
-    graph.links.push({"source": check.get(key1), "target": check.get(key2)})
-    
-    break;
 
   }
   if (d3sparql.debug) { console.log(JSON.stringify(graph)) }
 
   console.log(JSON.stringify(graph))
+  console.log(graph.nodes.length, graph.links.length);
 
   return graph
 }
@@ -827,9 +838,9 @@ d3sparql.forcegraph = function(json, config) {
     .attr("class", "node")
     .attr("r", opts.radius)
   var text = node.append("text")
-    .text((d) => { console.log(d.label);return  d.label })
+    .text((d) => { return  d.label })
     .attr("class", "node")
-    console.log(opts.label);
+    //console.log(opts.label);
   var force = d3.layout.force()
     .charge(opts.charge)
     .linkDistance(opts.distance)

@@ -1,15 +1,15 @@
 var endpoint = "http://127.0.0.1:3030/paris-shooting/query";
 
-function haversineDistance(coords1, coords2, isMiles) {
+function haversineDistance(coords1, coords2, coords3, coords4) {
     function toRad(x) {
         return x * Math.PI / 180;
     }
 
-    var lon1 = coords1[0];
-    var lat1 = coords1[1];
+    var lon1 = coords1;
+    var lat1 = coords2;
 
-    var lon2 = coords2[0];
-    var lat2 = coords2[1];
+    var lon2 = coords3;
+    var lat2 = coords4;
 
     var R = 6371; // km
 
@@ -22,8 +22,6 @@ function haversineDistance(coords1, coords2, isMiles) {
         Math.sin(dLon / 2) * Math.sin(dLon / 2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c;
-
-    if (isMiles) d /= 1.60934;
 
     return d;
 }
@@ -91,6 +89,8 @@ function buildForceFieldsChart(element_id, building_name) {
             BIND(CONCAT("Point(", REPLACE(?point, ",", ""), ")") AS ?shootingvalue)
         }`;
 
+        console.log(sparql);
+
         d3sparql.query(endpoint, sparql, (json) => {
             config = {
                 "radius": 12,        // static value or a function to calculate radius of nodes (optional)
@@ -99,7 +99,8 @@ function buildForceFieldsChart(element_id, building_name) {
                 "width": 1000,      // canvas width (optional)
                 "height": 500,       // canvas height (optional)
                 "label": "name",    // SPARQL variable name for node labels (optional)
-                "selector": element_id
+                "selector": element_id,
+                "maxDistance": 0.1,
                 // options for d3sparql.graph() can be added here ...
             };
             d3sparql.forcegraph(json, config);
@@ -107,7 +108,39 @@ function buildForceFieldsChart(element_id, building_name) {
     });
 }
 
-buildPostalCodeChart("#result");
+function displayMapWithCoordinates(target) {
+    // Creating a map centered on Paris
+    let map = L.map('map').setView([48.8534951, 2.3483915], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+    maxZoom: 18,
+    }).addTo(map);
+
+    // Querying shootings positions
+    let sparql = `
+    PREFIX : <http://127.0.0.1:3333/>
+
+    select distinct ?point where {
+        ?shooting :hasGeo ?geo .
+        ?geo :hasPoint ?point .
+    }`;
+
+    d3sparql.query(endpoint, sparql, (json) => {
+        let data = json.results.bindings
+
+        data.forEach((point) => {
+            const regexp = /\d+\.\d+/g
+            const array = [...(point.point.value).matchAll(regexp)];
+            let marker = L.marker([array[0][0], array[1][0]]).addTo(map);
+        })
+    });
+}
+
+
+// TODO Uncomment below
+//buildPostalCodeChart("#result");
 buildForceFieldsChart('#forcefield', 'Tour Eiffel');
+//displayMapWithCoordinates("#map");
 
 
