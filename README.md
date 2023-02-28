@@ -8,4 +8,4 @@
 ## About this project
 
 This project aims to demonstrate how we can query multiple available ontologies using SPARQL.
-Thus, we create our own ontology from a database of film shootings which took place in Paris, and linked it with various other ontologies such as Wikidata and OpenStreetMap.
+Thus, we created our own ontology from a database of film shootings which took place in Paris, and linked it with various other ontologies such as Wikidata and OpenStreetMap via SPARQL queries.
