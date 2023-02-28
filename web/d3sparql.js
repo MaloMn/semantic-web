@@ -114,17 +114,17 @@ d3sparql.graph = function(json, config) {
 
   console.log(opts);
 
-  var graph = {
+  let graph = {
     "nodes": [],
     "links": []
   }
-  var check = d3.map()
-  var index = 0
+  let check = d3.map()
+  let index = 0
 
   for (var i = 0; i < data.length; i++) {
 
-    var key1 = data[i][opts.key1].value
-    var key2 = data[i][opts.key2].value
+    let key1 = data[i][opts.key1].value
+    let key2 = data[i][opts.key2].value
 
     let label1 = opts.label1 ? data[i][opts.label1].value : key1
     let label2 = opts.label2 ? data[i][opts.label2].value : key2
@@ -154,14 +154,12 @@ d3sparql.graph = function(json, config) {
         index++
       }
 
+      console.log(check.get(label1), check.get(label2))
       graph.links.push({"source": check.get(label1), "target": check.get(label2)})
     }
 
   }
   if (d3sparql.debug) { console.log(JSON.stringify(graph)) }
-
-  console.log(JSON.stringify(graph))
-  console.log(graph.nodes.length, graph.links.length);
 
   return graph
 }
@@ -586,7 +584,7 @@ d3sparql.piechart = function(json, config) {
 
   var pie = d3.layout.pie()
     //.sort(null)
-    .value(function(d) { return d[opts.size].value })
+    .value(function(d) { console.log(d); return d[opts.size].value })
 
   var svg = d3sparql.select(opts.selector, "piechart").append("svg")
     .attr("width", opts.width)
@@ -806,13 +804,13 @@ d3sparql.scatterplot = function(json, config) {
 d3sparql.forcegraph = function(json, config) {
   config = config || {}
 
-  var graph = (json.head && json.results) ? d3sparql.graph(json, config) : json
+  let graph = d3sparql.graph(json, config)
 
-  var scale = d3.scale.linear()
+  let scale = d3.scale.linear()
     .domain(d3.extent(graph.nodes, function(d) { return parseFloat(d.value) }))
     .range([1, 40])
 
-  var opts = {
+  let opts = {
     "radius":    config.radius    || function(d) { return d.value },
     "charge":    config.charge    || -500,
     "distance":  config.distance  || 50,

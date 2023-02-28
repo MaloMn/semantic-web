@@ -23,26 +23,75 @@
         <p>We can see that the most filmed location is the 18th district. One its most famous places in Montmartre.</p>
       </header>
     </section>
+
     <section>
       <header>
         <h2>Paris famous places and shootings that took place less than 1km from them</h2>
+        <p>OpenStreetMap is used to get the position of the chosen monuments.<br>
+        Try to input <code>Tour Eiffel</code>!</p>
       </header>
       <div class="horizontal">
       <form>
         <input type="text" id="paris-place" name="map" size="28" placeholder="Location in Paris">
-        <button>Add this place to the graph</button>
+        <button id=forceButton type='button'>Add this place to the graph</button> 
       </form>
-      <div id="forcefield">Blablabla</div>
+      <div id="forcefield">Loading...</div>
       </div>      
     </section>
+
     <section>
       <header>
         <h2>Location of shootings in Paris</h2>
         <p>The map below is from OpenStreetMap and is displayed using Leaflet.</p>
         <div id="map" style="height: 500px;"></div>
-        <p>We can see that the most filmed location is the 18th district. One its most famous places in Montmartre.</p>
+        <p>As you can see, the map is quite crowded!</p>
       </header>
     </section>
+
+    <section>
+      <header>
+        <h2>Directors' genders</h2>
+        <p>The piechart below shows the distribution of genres of the first 1000 directors being referenced on Wikidata. <br>
+          <em>For query timeout reasons, we had to limit the amount of data retrieved from Wikidata.</em>
+        </p>
+
+        <div id="genderpie"></div>
+        <p>As you can see, the film industry does not reflect gender equality (at least for the movies shot in Paris)</p>
+      </header>
+    </section>
+
+    <section>
+      <header>
+        <h2>Directors' genders</h2>
+        <p>The piechart below shows the distribution of genres of the first 1000 directors being referenced on Wikidata. <br>
+          <em>For query timeout reasons, we had to limit the amount of data retrieved from Wikidata.</em>
+        </p>
+
+        <div id="genderpie"></div>
+        <p>As you can see, the film industry does not reflect gender equality (at least for the movies shot in Paris)</p>
+      </header>
+    </section>
+
+    <section>
+      <header>
+        <h2>What movies have this genra?</h2>
+        <select id="model">
+          <option value="0">Thriller</option>
+          <option value="1">Westen film</option>
+          <option value="2">Action film</option>
+          <option value="3">Film based on literature</option>
+          <option value="4">Drama film</option>
+          <option value="5">Biographical film</option>
+          <option value="6">Comedy film</option>
+          <option value="7">pPsychological thriller film</option>
+          <option value="8">Neo-noir</option>
+          <option value="9">Vigilante film</option>
+      </select>
+      </header>
+    </section>
+
+
+    
       
       <!--<aside>
         <h3>Card heading</h3>

@@ -92,7 +92,7 @@ function buildForceFieldsChart(element_id, building_name) {
         console.log(sparql);
 
         d3sparql.query(endpoint, sparql, (json) => {
-            config = {
+            let config = {
                 "radius": 12,        // static value or a function to calculate radius of nodes (optional)
                 "charge": -250,      // force between nodes (optional; negative: repulsion, positive: attraction)
                 "distance": 30,        // target distance between linked nodes (optional)
@@ -137,10 +137,124 @@ function displayMapWithCoordinates(target) {
     });
 }
 
+function getDirectorsGenres(target) {
+    let sparql = `
+    PREFIX : <http://127.0.0.1:3333/>
+    select distinct ?director where {
+        ?shooting :hasMovie ?movie .
+        ?movie :hasDirector ?director .
+    }`;
+
+    d3sparql.query(endpoint, sparql, (json) => {
+        let directors = json.results.bindings
+        directors = directors.map(obj => obj.director.value.toLowerCase());
+        all_directors = directors.join('|');
+
+        let sparql = `
+        PREFIX : <http://127.0.0.1:3333/>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX wd: <http://www.wikidata.org/entity/>
+        PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+      
+        select ?genderlabel (COUNT(?genderlabel) AS ?number) where {
+            SERVICE <https://query.wikidata.org/sparql> {
+                select distinct ?human ?genderlabel where {
+                    ?human wdt:P31 wd:Q5 .
+                    ?human rdfs:label ?label .
+                    ?human wdt:P106 wd:Q2526255 .  
+
+                    FILTER REGEX( lcase(str(?label)), "(${all_directors})" ) 
+
+                    ?human wdt:P21 ?genre .
+                    ?genre rdfs:label ?genderlabel .
+                    FILTER(LANG(?genderlabel) = "en")
+                } LIMIT 1000
+            }
+        }  group by ?genderlabel`;
+
+        console.log(sparql);
+
+        d3sparql.query(endpoint, sparql, (json) => {
+            let config = {
+                "label":    "genderlabel",    // SPARQL variable name for slice label (optional; default is the 1st variable)
+                "size":     "number",    // SPARQL variable name for slice value (optional; default is the 2nd variable)
+                "width":    700,       // canvas width (optional)
+                "height":   600,       // canvas height (optional)
+                "margin":   10,        // canvas margin (optional)
+                "hole":     50,        // radius size of a center hole (optional; 0 for pie, r > 0 for doughnut)
+                "selector": target
+            }
+            d3sparql.piechart(json, config)
+        });
+
+    });
+}
+
+function getMoviesGenras(target, genra) {
+    let sparql = `
+    PREFIX : <http://127.0.0.1:3333/>
+    select distinct ?title where {
+        ?shooting :hasMovie ?movie .
+        ?movie :hasTitle ?title .
+    }`;
+
+    d3sparql.query(endpoint, sparql, (json) => {
+        let movies = json.results.bindings
+        movies = movies.map(obj => obj.title.value.toLowerCase());
+        all_movies = movies.join('|');
+
+        let sparql = `
+        PREFIX : <http://127.0.0.1:3333/>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX wd: <http://www.wikidata.org/entity/>
+        PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+      
+        select distinct ?titlelabel ?imdb where {            
+            SERVICE <https://query.wikidata.org/sparql> {
+                select distinct ?film ?genralabel ?titlelabel where {
+                    ?film wdt:P31 wd:Q11424 .
+                    ?film rdfs:label ?label .
+                    ?film wdt:P136 ?genra .
+                    ?genra rdfs:label ?genralabel .
+              
+                    FILTER REGEX( lcase(str(?genralabel)), "(${genra})" , "i")
+                    FILTER REGEX( lcase(str(?label)), "(${all_movies})" , "i")
+
+                    FILTER(LANG(?genralabel) = "en")
+
+                    ?title wdt:P1476 ?titlelabel .
+                    ?film wdt:P345 ?imdb .
+                } LIMIT 10000
+            }
+        }`;
+
+        console.log(sparql);
+
+        d3sparql.query(endpoint, sparql, (json) => {
+            config = {
+                "selector": target,
+            }
+            d3sparql.htmltable(json, config)
+        });
+    });
+}
+
+var global_graph = {
+    "nodes": [],
+    "links": []
+};
+var global_check = d3.map()
+var global_index = 0;
+
+document.getElementById("forceButton").onclick = function () { 
+    let place = document.getElementById("paris-place").value;
+    buildForceFieldsChart('#forcefield', place);
+};
 
 // TODO Uncomment below
-//buildPostalCodeChart("#result");
-buildForceFieldsChart('#forcefield', 'Tour Eiffel');
-//displayMapWithCoordinates("#map");
-
+buildPostalCodeChart("#result");
+buildForceFieldsChart('#forcefield', 'Panthéon');
+displayMapWithCoordinates("#map");
+getDirectorsGenres('#genderpie');
+//getMoviesGenras('#genra', "comedy film");
 
